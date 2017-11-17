@@ -1,0 +1,15 @@
+/*.jumbotron {
+	background-image: url("view-source:file:///Users/sashikers/Desktop/CODE/Hangman-Game/index.html");
+}*/
+/*
+body {
+	background-image: ;
+}*/
+
+.jumbotron {
+	background-image: url("SFbridge.jpg");
+	background-position: left center;
+	height: 300px;
+
+}
+
