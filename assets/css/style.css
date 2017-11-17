@@ -6,10 +6,17 @@ body {
 	background-image: ;
 }*/
 
+/*body {
+	background-image: url("beer.jpg");
+	background-size: cover;
+}*/
+
 .jumbotron {
 	background-image: url("SFbridge.jpg");
 	background-position: left center;
 	height: 300px;
-
+}
+.tagline {
+	font-weight: bold;
 }
 
