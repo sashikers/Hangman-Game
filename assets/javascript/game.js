@@ -49,9 +49,23 @@ document.onkeyup = function(event) {
 	// takes the key pressed by user and converts it into an uppercase string
 	var userInput = String.fromCharCode(event.keyCode).toUpperCase();
 	console.log(userInput);
+
 	if (availableLetters.indexOf(userInput) > -1) {
+
 		if (guessWord.indexOf(userInput) > -1) {
 			correctLetters += userInput;
+
+			var arrayCorrectlyGuessedLetters = document.getElementsByClassName("letter unguessed letter"+userInput);
+			// console.log(arrayCorrectlyGuessedLetters);
+			// console.log(arrayCorrectlyGuessedLetters[0]);
+			// console.log(arrayCorrectlyGuessedLetters[0].className);
+			for (var i = 0; i < arrayCorrectlyGuessedLetters.length; i++) {
+				arrayCorrectlyGuessedLetters[i].className += " guessed";
+			}
+			// for (var i = 0; i < arrayCorrectlyGuessedLetters.length; i++) {
+			// 	arrayCorrectlyGuessedLetters[i].setAttribute = "class", "letter guessed letter" + userInput;
+			// };
+			console.log(arrayCorrectlyGuessedLetters);
 
 
 		} else {
