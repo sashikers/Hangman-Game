@@ -18,14 +18,18 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-3"></div>
-			<div class="col-xs-6" style="background: lightgray; height: 275px;">
+			<div class="col-xs-6" style="background: lightgray; height: 300px;">
 				<h2>Press any key to get started!</h2>
 				<ul id="letters"></ul>
+				<button onclick="setup()">New word</button>
+				<br>
 				<br>
 				<p>You already tried: </p>
 				<div id="allGuesses"></div>
 				<br>
 				<p>You have <span id="livesLeft">5</span> lives left!</p>
+				<br>
+				<p>Your score is <span id="userScore">0. Why not play a game!</span></p>
 			</div>
 			<div class="col-xs-3"></div>
 

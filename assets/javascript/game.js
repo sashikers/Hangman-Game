@@ -15,7 +15,9 @@ console.log(myObj.currentWord);*/
 
 "use strict";
 var availableLetters, words, lettersGuessed, lettersMatched, numLettersMatched, 
-guessWord, letters, lives, correctLetters;
+guessWord, letters, lives, correctLetters, win, userScore;
+
+userScore = 0;
 
 function setup() {
 	availableLetters = "abcdefghijklmnopqrstuvwxyz";
@@ -82,6 +84,10 @@ document.onkeyup = function(event) {
 			lives -= 1;
 			document.getElementById("livesLeft").innerHTML = "<strong>" + lives + "</strong>";
 			console.log(lives);
+
+			if (lives === 0) {
+				// document.getElementById("allGuesses").empty();
+			}
 		}
 	}
 }
