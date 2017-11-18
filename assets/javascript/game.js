@@ -19,7 +19,9 @@ guessWord, letters, lives, correctLetters, win, userScore;
 
 userScore = 0;
 
+// this function sets up the original word to be played and can be called letter to get a new word
 function setup() {
+	// configuration for the setup function
 	availableLetters = "abcdefghijklmnopqrstuvwxyz";
 	availableLetters = availableLetters.toUpperCase();
 	words = ["Anchor", "Almanac", "Barebottle", "Cellarmaker", "Harmonic", "Magnolia", "ThirstyBear"];
@@ -29,23 +31,32 @@ function setup() {
 	lettersGuessed = lettersMatched = '';
 	numLettersMatched = 0;
 
+	// picks a random word and puts it into uppercase
 	guessWord = words[Math.floor(Math.random() * words.length)];
 	guessWord = guessWord.toUpperCase();
 
+	// sets up the hangman area 
 	letters = document.getElementById("letters");
 	letters.innerHTML = "<li class=\"current-word\">Brewery is:</li>";
 
+	// generates a list of the letters in the guessable word and puts them into a row
 	var letter, i;
 	for (i = 0; i < guessWord.length; i++) {
+		// puts the letters into a <li> format with class = letter, which allows them to stack inline
 		letter = "<li class=\"letter unguessed letter" + guessWord.charAt(i) + "\">" + guessWord.charAt(i) + "</li>";
+		// inserts the <li> into the <ul> element 
 		letters.insertAdjacentHTML('beforeend',letter);
 	}
-
-	console.log(words);
 	console.log(guessWord);
 };
+// runs the initial setup function 
 setup();
-console.log(guessWord);
+
+function gameLost() {
+	userScore -= 1;
+}
+gameLost();
+console.log(userScore);
 
 document.onkeyup = function(event) {
 	// takes the key pressed by user and converts it into an uppercase string
@@ -58,17 +69,12 @@ document.onkeyup = function(event) {
 			correctLetters += userInput;
 
 			var arrayCorrectlyGuessedLetters = document.getElementsByClassName("letter unguessed letter"+userInput);
-			// console.log(arrayCorrectlyGuessedLetters);
-			// console.log(arrayCorrectlyGuessedLetters[0]);
-			// console.log(arrayCorrectlyGuessedLetters[0].className);
 			for (var i = 0; i < arrayCorrectlyGuessedLetters.length; i++) {
 				arrayCorrectlyGuessedLetters[i].className += " guessed";
 			}
 			// for (var i = 0; i < arrayCorrectlyGuessedLetters.length; i++) {
 			// 	arrayCorrectlyGuessedLetters[i].setAttribute = "class", "letter guessed letter" + userInput;
 			// };
-			console.log(arrayCorrectlyGuessedLetters);
-
 
 		} else {
 			var guessedLetter = document.createElement("span");
@@ -83,7 +89,7 @@ document.onkeyup = function(event) {
 
 			lives -= 1;
 			document.getElementById("livesLeft").innerHTML = "<strong>" + lives + "</strong>";
-			console.log(lives);
+			console.log("lives", lives);
 
 			if (lives === 0) {
 				// document.getElementById("allGuesses").empty();
@@ -92,13 +98,6 @@ document.onkeyup = function(event) {
 	}
 }
 
-console.log(correctLetters);
-
-
-
-
-
-// console.log(words);	
 
 
 

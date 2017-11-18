@@ -21,14 +21,18 @@
 			<div class="col-xs-6" style="background: lightgray; height: 300px;">
 				<h2>Press any key to get started!</h2>
 				<ul id="letters"></ul>
+				<!-- this button reruns the setup() function, pulling a new word for guessing -->
 				<button onclick="setup()">New word</button>
 				<br>
 				<br>
+				<!-- this section lists the letters the user already guessed -->
 				<p>You already tried: </p>
 				<div id="allGuesses"></div>
 				<br>
+				<!-- this section lists the amount of lives left -->
 				<p>You have <span id="livesLeft">5</span> lives left!</p>
 				<br>
+				<!-- this lists the user score -->
 				<p>Your score is <span id="userScore">0. Why not play a game!</span></p>
 			</div>
 			<div class="col-xs-3"></div>
