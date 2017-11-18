@@ -4,18 +4,13 @@ var allGuesses = document.getElementById("allGuesses");
 
 // creates empty array to hold the guessable letters
 var currentWordArray = [];
+// selects random word from the word bank
+var currentWord = words[Math.floor(Math.random()*words.length)];
+// puts the selected word into uppercase
+currentWord = currentWord.toUpperCase();
 
-function makeMan() {
-	// selects random word from the word bank
-	var currentWord = words[Math.floor(Math.random()*words.length)];
-	// puts the selected word into uppercase
-	currentWord = currentWord.toUpperCase();
-
-	// creates array of the letters in the selected word
-	var letterArray = currentWord.split("");
-
-	// resets the letter array
-	currentWordArray = [];
+// creates array of the letters in the selected word
+var letterArray = currentWord.split("");
 
 	// creates an object out of every letter and puts it in the empty guessable letters array
 	for (var i = 0; i < letterArray.length; i++) {
@@ -27,33 +22,27 @@ function makeMan() {
 		letterObject.solved = letterArray[i];
 		// appends the object letters into the guessable letter array
 		currentWordArray.push(letterObject);
-		// console.log(letterObject);
 	}
+function makeMan() {
 
-	console.log(currentWordArray);
+	// resets the letter array
+	// currentWordArray = [];
+	
 	for (var i = 0; i < currentWordArray.length; i++){
 		var letterFlip = "";
 		letterFlip = currentWordArray[i].unsolved;
 		var letterTile = document.createElement("span");
-		letterTile.setAttribute("class", "letter-tile");
+		letterTile.setAttribute("class", "letter-tile tileNumber"+i);
+		// letterTile.setAttribute("class", "tileNumber" + i);
 		var textLetterFlip = document.createTextNode(letterFlip);
 		letterTile.appendChild(textLetterFlip);
 		document.getElementById("hangman").appendChild(letterTile);
-		// console.log(letterTile);
-		// console.log(currentWordArray[i].unsolved);
 	}
-
-
-	// var letterObject = {};
-	// var currentWordArray = currentWord.split("");
-	// console.log(currentWordArray);
-
-	// for (var i = 0; i < currentWordArray.length; i++) {
-	// 	currentWordArray[i].unsolved = "_";
-	// }
-	// console.log(currentWordArray);
+	console.log(currentWordArray);
 
 }
+
+console.log(currentWordArray);
 
 makeMan();
 
