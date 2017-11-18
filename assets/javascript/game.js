@@ -18,7 +18,7 @@ document.onkeyup = function(event) {
 	var userInput = String.fromCharCode(event.keyCode).toUpperCase();
 	console.log(userInput);
 	var guessedLetter = document.createElement("span");
-	guessedLetter.setAttribute("class", "guessedButtons");
+	guessedLetter.setAttribute("class", "guessedButton");
 	var textGuessedLetter = document.createTextNode(userInput);
 	guessedLetter.appendChild(textGuessedLetter);
 	document.getElementById("allGuesses").appendChild(guessedLetter);
