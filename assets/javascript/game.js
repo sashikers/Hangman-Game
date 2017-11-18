@@ -12,39 +12,50 @@ currentWord = currentWord.toUpperCase();
 // creates array of the letters in the selected word
 var letterArray = currentWord.split("");
 
-	// creates an object out of every letter and puts it in the empty guessable letters array
-	for (var i = 0; i < letterArray.length; i++) {
-		// sets up an empty object
-		var letterObject = {}; 
-		// assigns unsolved class - empty space 
-		letterObject.unsolved = "_";
-		// assigns solved class - the correct letter
-		letterObject.solved = letterArray[i];
-		// appends the object letters into the guessable letter array
-		currentWordArray.push(letterObject);
-	}
-function makeMan() {
-
-	// resets the letter array
-	// currentWordArray = [];
-	
-	for (var i = 0; i < currentWordArray.length; i++){
-		var letterFlip = "";
-		letterFlip = currentWordArray[i].unsolved;
-		var letterTile = document.createElement("span");
-		letterTile.setAttribute("class", "letter-tile tileNumber"+i);
-		// letterTile.setAttribute("class", "tileNumber" + i);
-		var textLetterFlip = document.createTextNode(letterFlip);
-		letterTile.appendChild(textLetterFlip);
-		document.getElementById("hangman").appendChild(letterTile);
-	}
-	console.log(currentWordArray);
-
+// creates an object out of every letter and puts it in the empty guessable letters array
+for (var i = 0; i < letterArray.length; i++) {
+	// sets up an empty object
+	var letterObject = {}; 
+	// assigns unsolved class - empty space 
+	letterObject.unsolved = "_";
+	// assigns solved class - the correct letter
+	letterObject.solved = letterArray[i];
+	// appends the object letters into the guessable letter array
+	currentWordArray.push(letterObject);
 }
+
+
+// function makeMan() {
+
+// 	// resets the letter array
+// 	// currentWordArray = [];
+	
+// 	// for (var i = 0; i < currentWordArray.length; i++){
+// 	// 	var letterFlip = "";
+// 	// 	letterFlip = currentWordArray[i].unsolved;
+// 	// 	var letterTile = document.createElement("span");
+// 	// 	letterTile.setAttribute("class", "letter-tile tileNumber"+i);
+// 	// 	// letterTile.setAttribute("class", "tileNumber" + i);
+// 	// 	var textLetterFlip = document.createTextNode(letterFlip);
+// 	// 	letterTile.appendChild(textLetterFlip);
+// 	// 	document.getElementById("hangman").appendChild(letterTile);
+// 	// }
+// 	console.log(currentWordArray);
+
+// }
 
 console.log(currentWordArray);
 
-makeMan();
+
+// for (var i = 0; i < currentWordArray.length; i++){
+// 	var letterFlip = "";
+// 	letterFlip = currentWordArray[i].unsolved;
+// 	var letterTile = document.createElement("span");
+// 	letterTile.setAttribute("class", "letter-tile tileNumber"+i);
+// 	var textLetterFlip = document.createTextNode(letterFlip);
+// 	letterTile.appendChild(textLetterFlip);
+// 	document.getElementById("hangman").appendChild(letterTile);
+// };
 
 document.onkeyup = function(event) {
 	// takes the key pressed by user and converts it into an uppercase string
@@ -59,7 +70,16 @@ document.onkeyup = function(event) {
 	guessedLetter.appendChild(textGuessedLetter);
 	// appends the HTML element to the guesses div to display all guessed letters
 	document.getElementById("allGuesses").appendChild(guessedLetter);
-}
+
+	for (var i = 0; i < currentWordArray.length; i++) {
+		if (currentWordArray[i].solved === userInput) {
+			// document.getElementsByClassName("tileNumber"+i).innerHTML = currentWordArray[i].solved;
+			// console.log(userInput);
+		} else {
+
+		};
+	};
+};
 
 
 	
