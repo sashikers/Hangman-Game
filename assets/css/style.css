@@ -66,3 +66,10 @@ h2 {
 	border-bottom: 2px solid black;
 	text-align: center;
 }
+
+.unguessed {
+	color: black;
+}
+.guessed {
+	color: red;
+}

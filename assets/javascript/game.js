@@ -15,13 +15,14 @@ console.log(myObj.currentWord);*/
 
 "use strict";
 var availableLetters, words, lettersGuessed, lettersMatched, numLettersMatched, 
-guessWord, letters, lives;
+guessWord, letters, lives, correctLetters;
 
 function setup() {
 	availableLetters = "abcdefghijklmnopqrstuvwxyz";
 	availableLetters = availableLetters.toUpperCase();
 	words = ["Anchor", "Almanac", "Barebottle", "Cellarmaker", "Harmonic", "Magnolia", "ThirstyBear"];
 	lives = 5;
+	correctLetters = "";
 
 	lettersGuessed = lettersMatched = '';
 	numLettersMatched = 0;
@@ -34,7 +35,7 @@ function setup() {
 
 	var letter, i;
 	for (i = 0; i < guessWord.length; i++) {
-		letter = "<li class=\"letter letter" + guessWord.charAt(i) + "\">" + guessWord.charAt(i) + "</li>";
+		letter = "<li class=\"letter unguessed letter" + guessWord.charAt(i) + "\">" + guessWord.charAt(i) + "</li>";
 		letters.insertAdjacentHTML('beforeend',letter);
 	}
 
@@ -42,6 +43,7 @@ function setup() {
 	console.log(guessWord);
 };
 setup();
+console.log(guessWord);
 
 document.onkeyup = function(event) {
 	// takes the key pressed by user and converts it into an uppercase string
@@ -49,7 +51,9 @@ document.onkeyup = function(event) {
 	console.log(userInput);
 	if (availableLetters.indexOf(userInput) > -1) {
 		if (guessWord.indexOf(userInput) > -1) {
-			console.log("wow");
+			correctLetters += userInput;
+
+
 		} else {
 			var guessedLetter = document.createElement("span");
 			// sets the class of the HTML element to guessedButton for formatting
@@ -68,6 +72,7 @@ document.onkeyup = function(event) {
 	}
 }
 
+console.log(correctLetters);
 
 
 
