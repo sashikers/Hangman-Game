@@ -8,8 +8,30 @@ function makeMan() {
 	var currentWord = words[Math.floor(Math.random()*words.length)];
 	currentWord = currentWord.toUpperCase();
 	console.log(currentWord);
-	var currentWordArray = currentWord.split("");
+
+	var letterArray = currentWord.split("");
+	console.log(letterArray);
+
+	var currentWordArray = [];
+
+	for (i = 0; i < letterArray.length; i++) {
+		var letterObject = {}; 
+		letterObject.unsolved = "_";
+		letterObject.solved = letterArray[i];
+		currentWordArray.push(letterObject);
+		console.log(letterObject);
+	}
+
 	console.log(currentWordArray);
+	// var letterObject = {};
+	// var currentWordArray = currentWord.split("");
+	// console.log(currentWordArray);
+
+	// for (var i = 0; i < currentWordArray.length; i++) {
+	// 	currentWordArray[i].unsolved = "_";
+	// }
+	// console.log(currentWordArray);
+
 }
 
 makeMan();
