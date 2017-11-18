@@ -18,7 +18,7 @@ function makeMan() {
 	currentWordArray = [];
 
 	// creates an object out of every letter and puts it in the empty guessable letters array
-	for (i = 0; i < letterArray.length; i++) {
+	for (var i = 0; i < letterArray.length; i++) {
 		// sets up an empty object
 		var letterObject = {}; 
 		// assigns unsolved class - empty space 
@@ -27,10 +27,23 @@ function makeMan() {
 		letterObject.solved = letterArray[i];
 		// appends the object letters into the guessable letter array
 		currentWordArray.push(letterObject);
-		console.log(letterObject);
+		// console.log(letterObject);
 	}
 
 	console.log(currentWordArray);
+	for (var i = 0; i < currentWordArray.length; i++){
+		var letterFlip = "";
+		letterFlip = currentWordArray[i].unsolved;
+		var letterTile = document.createElement("span");
+		letterTile.setAttribute("class", "letter-tile");
+		var textLetterFlip = document.createTextNode(letterFlip);
+		letterTile.appendChild(textLetterFlip);
+		document.getElementById("hangman").appendChild(letterTile);
+		// console.log(letterTile);
+		// console.log(currentWordArray[i].unsolved);
+	}
+
+
 	// var letterObject = {};
 	// var currentWordArray = currentWord.split("");
 	// console.log(currentWordArray);
