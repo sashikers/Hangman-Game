@@ -67,9 +67,11 @@ h2 {
 	text-align: center;
 }
 
-/*.unguessed {
-	color: black;
-}*/
+.unguessed {
+	color: lightgray;
+	/*visibility: hidden;*/
+}
 .guessed {
-	color: red;
+	color: black; 
+	font-weight: bold;
 }
