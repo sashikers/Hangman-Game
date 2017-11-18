@@ -52,3 +52,17 @@ h2 {
 	background-color: gray;
 	font-weight: bold;
 }
+
+.current-word {
+	list-style: none;
+}
+
+.letter {
+	display: inline-block;
+	list-style: none;
+	width: 20px;
+	margin: 10px;
+	/*border-style: solid;*/
+	border-bottom: 2px solid black;
+	text-align: center;
+}

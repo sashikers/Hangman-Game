@@ -1,3 +1,46 @@
+"use strict";
+var availableLetters, words, lettersGuessed, lettersMatched, numLettersMatched, 
+guessWord, letters;
+
+function setup() {
+	availableLetters = "abcdefghijklmnopqrstuvwxyz";
+	words = ["Anchor", "Almanac", "Barebottle", "Cellarmaker", "Harmonic", "Magnolia", "ThirstyBear"];
+
+	lettersGuessed = lettersMatched = '';
+	numLettersMatched = 0;
+
+	guessWord = words[Math.floor(Math.random() * words.length)];
+	guessWord = guessWord.toUpperCase();
+
+	letters = document.getElementById("letters");
+	letters.innerHTML = "<li class=\"current-word\">Brewery is:</li>";
+
+	var letter, i;
+	for (i = 0; i < guessWord.length; i++) {
+		letter = "<li class=\"letter letter" + guessWord.charAt(i) + "\">" + guessWord.charAt(i) + "</li>";
+		letters.insertAdjacentHTML('beforeend',letter);
+	}
+
+	console.log(words);
+	console.log(guessWord);
+};
+
+setup();
+
+document.onkeyup = function(event) {
+	// takes the key pressed by user and converts it into an uppercase string
+	var userInput = String.fromCharCode(event.keyCode).toUpperCase();
+	console.log(userInput);
+}
+
+
+
+// console.log(words);	
+
+
+
+/*
+
 // defines the word bank 
 var words = ["Anchor", "Almanac", "Barebottle", "Cellarmaker", "Harmonic", "Magnolia", "ThirstyBear"];
 var allGuesses = document.getElementById("allGuesses");
@@ -81,5 +124,5 @@ document.onkeyup = function(event) {
 	};
 };
 
-
+*/
 	
