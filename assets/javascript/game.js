@@ -1,10 +1,27 @@
+/*
+
+var myObj = {
+	wordBank: ["Anchor", "Almanac", "Barebottle", "Cellarmaker", "Harmonic", "Magnolia", "ThirstyBear"],
+	createCurrentWord: function() {
+		this.currentWord = this.wordBank[Math.floor(Math.random() * wordBank.length)];
+		return currentWord;
+	},
+};
+
+// console.log(myObj.wordBank[0]);
+myObj.createCurrentWord();
+console.log(myObj.currentWord);*/
+
+
 "use strict";
 var availableLetters, words, lettersGuessed, lettersMatched, numLettersMatched, 
-guessWord, letters;
+guessWord, letters, lives;
 
 function setup() {
 	availableLetters = "abcdefghijklmnopqrstuvwxyz";
+	availableLetters = availableLetters.toUpperCase();
 	words = ["Anchor", "Almanac", "Barebottle", "Cellarmaker", "Harmonic", "Magnolia", "ThirstyBear"];
+	lives = 5;
 
 	lettersGuessed = lettersMatched = '';
 	numLettersMatched = 0;
@@ -24,14 +41,35 @@ function setup() {
 	console.log(words);
 	console.log(guessWord);
 };
-
 setup();
 
 document.onkeyup = function(event) {
 	// takes the key pressed by user and converts it into an uppercase string
 	var userInput = String.fromCharCode(event.keyCode).toUpperCase();
 	console.log(userInput);
+	if (availableLetters.indexOf(userInput) > -1) {
+		if (guessWord.indexOf(userInput) > -1) {
+			console.log("wow");
+		} else {
+			var guessedLetter = document.createElement("span");
+			// sets the class of the HTML element to guessedButton for formatting
+			guessedLetter.setAttribute("class", "guessedButton");
+			// sets a text node with the userinput as the text
+			var textGuessedLetter = document.createTextNode(userInput);
+			// appends the text node to the HTML span element
+			guessedLetter.appendChild(textGuessedLetter);
+			// appends the HTML element to the guesses div to display all guessed letters
+			document.getElementById("allGuesses").appendChild(guessedLetter);
+
+			lives -= 1;
+			document.getElementById("livesLeft").innerHTML = "<strong>" + lives + "</strong>";
+			console.log(lives);
+		}
+	}
 }
+
+
+
 
 
 
