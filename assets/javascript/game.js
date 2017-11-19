@@ -29,6 +29,7 @@ function setup() {
 	document.getElementById("livesLeft").innerHTML = 5;
 	correctLetters = "";
 	document.getElementById("allGuesses").innerHTML = "";
+	document.getElementById("alerts").innerHTML = "";
 
 	lettersGuessed = '';
 	lettersMatched = 0;
@@ -79,63 +80,67 @@ document.onkeyup = function(event) {
 
 	document.getElementById("alerts").innerHTML = "";
 
-	if (lettersGuessed.indexOf(userInput) > -1) {
-		document.getElementById("alerts").innerHTML = "<br> You already tried " + userInput;
-	} else {	
-	// this checks if the input letter is one of the valid letters
-		if (availableLetters.indexOf(userInput) > -1) {
-			// adds the guessed letter to the guessed array so that letters cannot be repeated
-			lettersGuessed = lettersGuessed + userInput;
-
-			// this checks if the guessed letter is in the guessWord array
-			// if it is... 
-			if (guessWord.indexOf(userInput) > -1) {
-				// if the guessed letter is correct...
-				correctLetters += userInput;
-
-				// array that grabs all letters with the class of the guessed letter
-				var arrayCorrectlyGuessedLetters = document.getElementsByClassName("letter unguessed letter"+userInput);
-				// array goes through loop and every element gets assigned the guessed class, which changes it to a visible color
-				for (var i = 0; i < arrayCorrectlyGuessedLetters.length; i++) {
-					arrayCorrectlyGuessedLetters[i].className += " guessed";
-					lettersMatched += 1;
-					console.log("lettersMatched", lettersMatched);
+	if (lettersMatched === guessWord.length) {
+		document.getElementById("alerts").innerHTML = "<br> Pick a new word!";
+	} else {
+	
+		if (lettersGuessed.indexOf(userInput) > -1) {
+			document.getElementById("alerts").innerHTML = "<br> You already tried " + userInput;
+		} else {	
+		// this checks if the input letter is one of the valid letters
+			if (availableLetters.indexOf(userInput) > -1) {
+				// adds the guessed letter to the guessed array so that letters cannot be repeated
+				lettersGuessed = lettersGuessed + userInput;
+	
+				// this checks if the guessed letter is in the guessWord array
+				// if it is... 
+				if (guessWord.indexOf(userInput) > -1) {
+					// if the guessed letter is correct...
+					correctLetters += userInput;
+	
+					// array that grabs all letters with the class of the guessed letter
+					var arrayCorrectlyGuessedLetters = document.getElementsByClassName("letter unguessed letter"+userInput);
+					// array goes through loop and every element gets assigned the guessed class, which changes it to a visible color
+					for (var i = 0; i < arrayCorrectlyGuessedLetters.length; i++) {
+						arrayCorrectlyGuessedLetters[i].className += " guessed";
+						lettersMatched += 1;
+						console.log("lettersMatched", lettersMatched);
+					}
+	
+					// going to create the win loop
+					if (lettersMatched === guessWord.length){
+						gameWon();
+					}
+	
+				} else {
+					// and if it's not, it will create a tile for the guessed but wrong letter
+					var guessedLetter = document.createElement("span");
+					// sets the class of the HTML element to guessedButton for formatting
+					guessedLetter.setAttribute("class", "guessedButton");
+					// sets a text node with the userinput as the text
+					var textGuessedLetter = document.createTextNode(userInput);
+					// appends the text node to the HTML span element
+					guessedLetter.appendChild(textGuessedLetter);
+					// appends the HTML element to the guesses div to display all guessed letters
+					document.getElementById("allGuesses").appendChild(guessedLetter);
+	
+					lives -= 1;
+					document.getElementById("livesLeft").innerHTML = "<strong>" + lives + "</strong>";
+					console.log("lives", lives);
+	
+					if (lives === 0) {
+						gameLost();
+					}
 				}
-
-				// going to create the win loop
-				if (lettersMatched === guessWord.length){
-					gameWon();
-				}
-
+	
+	
 			} else {
-				// and if it's not, it will create a tile for the guessed but wrong letter
-				var guessedLetter = document.createElement("span");
-				// sets the class of the HTML element to guessedButton for formatting
-				guessedLetter.setAttribute("class", "guessedButton");
-				// sets a text node with the userinput as the text
-				var textGuessedLetter = document.createTextNode(userInput);
-				// appends the text node to the HTML span element
-				guessedLetter.appendChild(textGuessedLetter);
-				// appends the HTML element to the guesses div to display all guessed letters
-				document.getElementById("allGuesses").appendChild(guessedLetter);
-
-				lives -= 1;
-				document.getElementById("livesLeft").innerHTML = "<strong>" + lives + "</strong>";
-				console.log("lives", lives);
-
-				if (lives === 0) {
-					gameLost();
-				}
+				// this is what happens when the letter is not valid (aka alphabetical)
+				console.log("this is not a valid letter");
+				document.getElementById("alerts").innerHTML = '<br>"' + userInput + '" is not a valid letter';
 			}
-
-
-		} else {
-			// this is what happens when the letter is not valid (aka alphabetical)
-			console.log("this is not a valid letter");
-			document.getElementById("alerts").innerHTML = '<br>"' + userInput + '" is not a valid letter';
 		}
 	}
-
 if (lettersMatched.length === guessWord.length){
 					gameWon();
 				}
