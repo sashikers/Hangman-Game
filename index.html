@@ -18,7 +18,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-3"></div>
-			<div class="col-xs-6" style="background: lightgray; height: 300px;">
+			<div class="col-xs-6" style="background: lightgray; height: 100%;">
 				<h2>Press any key to get started!</h2>
 				<ul id="letters"></ul>
 				<!-- this button reruns the setup() function, pulling a new word for guessing -->
@@ -28,6 +28,8 @@
 				<!-- this section lists the letters the user already guessed -->
 				<p>You already tried: </p>
 				<div id="allGuesses"></div>
+				<!-- <br> -->
+				<div id="alerts" style="background-color: red;"></div>
 				<br>
 				<!-- this section lists the amount of lives left -->
 				<p>You have <span id="livesLeft">5</span> lives left!</p>

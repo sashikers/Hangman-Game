@@ -50,7 +50,7 @@ function setup() {
 		// inserts the <li> into the <ul> element 
 		letters.insertAdjacentHTML('beforeend',letter);
 	}
-	console.log(guessWord);
+	console.log("guessWord", guessWord);
 };
 // runs the initial setup function 
 setup();
@@ -58,17 +58,22 @@ setup();
 function gameLost() {
 	userScore -= 1;
 }
+// the win function
 function gameWon() {
 	userScore += 1; 
+	// clears out the guesses <li>s and puts in a win message
 	document.getElementById("allGuesses").innerHTML = 'You won! Your total score is ' + userScore + '. You should probably try harder...';
+	// updates the score total
 	document.getElementById("userScore").innerHTML = userScore;
 }
-// gameWon();
+
 
 document.onkeyup = function(event) {
 	// takes the key pressed by user and converts it into an uppercase string
 	var userInput = String.fromCharCode(event.keyCode).toUpperCase();
-	console.log(userInput);
+	console.log("userInput", userInput);
+
+	document.getElementById("alerts").innerHTML = "";
 
 	if (lettersGuessed.indexOf(userInput) > -1) {
 		console.log("try again bozo");
@@ -93,7 +98,15 @@ document.onkeyup = function(event) {
 					console.log("lettersMatched", lettersMatched);
 				}
 
+				// going to create the win loop
+				if (lettersMatched.length === guessWord.length){
+					gameWon();
+				}
+
+
+
 			} else {
+				// and if it's not, it will create a tile for the guessed but wrong letter
 				var guessedLetter = document.createElement("span");
 				// sets the class of the HTML element to guessedButton for formatting
 				guessedLetter.setAttribute("class", "guessedButton");
@@ -112,11 +125,17 @@ document.onkeyup = function(event) {
 					// document.getElementById("allGuesses").empty();
 				}
 			}
+
+
+		} else {
+			// this is what happens when the letter is not valid (aka alphabetical)
+			console.log("this is not a valid letter");
+			document.getElementById("alerts").innerHTML = '<br>"' + userInput + '" is not a valid letter';
 		}
-		}
+	}
 }
 
-console.log(lettersMatched);
+console.log("lettersMatched", lettersMatched);
 
 
 
