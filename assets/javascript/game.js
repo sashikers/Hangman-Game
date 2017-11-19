@@ -57,6 +57,10 @@ setup();
 
 function gameLost() {
 	userScore -= 1;
+	document.getElementById("allGuesses").innerHTML = 'You lost! Your total score is ' + userScore + '. Too bad...';
+	// updates the score total
+	document.getElementById("userScore").innerHTML = userScore + ".";
+
 }
 // the win function
 function gameWon() {
@@ -64,7 +68,7 @@ function gameWon() {
 	// clears out the guesses <li>s and puts in a win message
 	document.getElementById("allGuesses").innerHTML = 'You won! Your total score is ' + userScore + '. You should probably try harder...';
 	// updates the score total
-	document.getElementById("userScore").innerHTML = userScore;
+	document.getElementById("userScore").innerHTML = userScore + ".";
 }
 
 
@@ -76,7 +80,7 @@ document.onkeyup = function(event) {
 	document.getElementById("alerts").innerHTML = "";
 
 	if (lettersGuessed.indexOf(userInput) > -1) {
-		console.log("try again bozo");
+		document.getElementById("alerts").innerHTML = "<br> You already tried " + userInput;
 	} else {	
 	// this checks if the input letter is one of the valid letters
 		if (availableLetters.indexOf(userInput) > -1) {
@@ -99,11 +103,9 @@ document.onkeyup = function(event) {
 				}
 
 				// going to create the win loop
-				if (lettersMatched.length === guessWord.length){
+				if (lettersMatched === guessWord.length){
 					gameWon();
 				}
-
-
 
 			} else {
 				// and if it's not, it will create a tile for the guessed but wrong letter
@@ -122,7 +124,7 @@ document.onkeyup = function(event) {
 				console.log("lives", lives);
 
 				if (lives === 0) {
-					// document.getElementById("allGuesses").empty();
+					gameLost();
 				}
 			}
 
@@ -133,6 +135,10 @@ document.onkeyup = function(event) {
 			document.getElementById("alerts").innerHTML = '<br>"' + userInput + '" is not a valid letter';
 		}
 	}
+
+if (lettersMatched.length === guessWord.length){
+					gameWon();
+				}
 }
 
 console.log("lettersMatched", lettersMatched);
