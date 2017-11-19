@@ -31,7 +31,7 @@ h2 {
 	border-style: solid;
 	border-color: black;
 	border-width: 2px;
-	background-color: black;
+	background-color: maroon;
 	color: white;
 	font-weight: bold;
 }
@@ -50,7 +50,7 @@ h2 {
 	border-style: solid;
 	border-color: black;
 	border-width: 2px;
-	background-color: gray;
+	background-color: maroon;
 	font-weight: bold;
 }
 
@@ -76,4 +76,11 @@ h2 {
 .guessed {
 	color: black; 
 	font-weight: bold;
+}
+
+#alerts {
+	background-color: #ff3300;
+	font-weight: bold; 
+	/*padding: 10px;*/
+	text-align: center;
 }

@@ -24,7 +24,7 @@ function setup() {
 	// configuration for the setup function
 	availableLetters = "abcdefghijklmnopqrstuvwxyz";
 	availableLetters = availableLetters.toUpperCase();
-	words = ["Anchor", "Almanac", "Barebottle", "Cellarmaker", "Harmonic", "Magnolia", "ThirstyBear"];
+	words = ["Anchor", "Almanac", "Barebottle", "Cellarmaker", "Harmonic", "Magnolia", "ThirstyBear", "FortPoint"];
 	lives = 5;
 	document.getElementById("livesLeft").innerHTML = 5;
 	correctLetters = "";
@@ -81,11 +81,11 @@ document.onkeyup = function(event) {
 	document.getElementById("alerts").innerHTML = "";
 
 	if (lettersMatched === guessWord.length) {
-		document.getElementById("alerts").innerHTML = "<br> Pick a new word!";
+		document.getElementById("alerts").innerHTML = "Pick a new word!";
 	} else {
 	
 		if (lettersGuessed.indexOf(userInput) > -1) {
-			document.getElementById("alerts").innerHTML = "<br> You already tried " + userInput;
+			document.getElementById("alerts").innerHTML = "You already tried " + userInput;
 		} else {	
 		// this checks if the input letter is one of the valid letters
 			if (availableLetters.indexOf(userInput) > -1) {
@@ -137,7 +137,7 @@ document.onkeyup = function(event) {
 			} else {
 				// this is what happens when the letter is not valid (aka alphabetical)
 				console.log("this is not a valid letter");
-				document.getElementById("alerts").innerHTML = '<br>"' + userInput + '" is not a valid letter';
+				document.getElementById("alerts").innerHTML = '"' + userInput + '" is not a valid letter';
 			}
 		}
 	}
@@ -164,8 +164,7 @@ var currentWord = words[Math.floor(Math.random()*words.length)];
 currentWord = currentWord.toUpperCase();
 
 // creates array of the letters in the selected word
-var letterArray = currentWord.split("");
-
+var letterArray = currentWord
 // creates an object out of every letter and puts it in the empty guessable letters array
 for (var i = 0; i < letterArray.length; i++) {
 	// sets up an empty object
