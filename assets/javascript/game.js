@@ -26,9 +26,12 @@ function setup() {
 	availableLetters = availableLetters.toUpperCase();
 	words = ["Anchor", "Almanac", "Barebottle", "Cellarmaker", "Harmonic", "Magnolia", "ThirstyBear"];
 	lives = 5;
+	document.getElementById("livesLeft").innerHTML = 5;
 	correctLetters = "";
+	document.getElementById("allGuesses").innerHTML = "";
 
-	lettersGuessed = lettersMatched = '';
+	lettersGuessed = '';
+	lettersMatched = 0;
 	numLettersMatched = 0;
 
 	// picks a random word and puts it into uppercase
@@ -55,26 +58,35 @@ setup();
 function gameLost() {
 	userScore -= 1;
 }
-gameLost();
-console.log(userScore);
+function gameWon() {
+	userScore += 1; 
+	document.getElementById("allGuesses").innerHTML = 'You won! Your total score is ' + userScore + '. You should probably try harder...';
+	document.getElementById("userScore").innerHTML = userScore;
+}
+// gameWon();
 
 document.onkeyup = function(event) {
 	// takes the key pressed by user and converts it into an uppercase string
 	var userInput = String.fromCharCode(event.keyCode).toUpperCase();
 	console.log(userInput);
 
+	// this checks if the input letter is one of the valid letters
 	if (availableLetters.indexOf(userInput) > -1) {
 
+		// this checks if the guessed letter is in the guessWord array
+		// if it is... 
 		if (guessWord.indexOf(userInput) > -1) {
+			// if the guessed letter is correct...
 			correctLetters += userInput;
 
+			// array that grabs all letters with the class of the guessed letter
 			var arrayCorrectlyGuessedLetters = document.getElementsByClassName("letter unguessed letter"+userInput);
+			// array goes through loop and every element gets assigned the guessed class, which changes it to a visible color
 			for (var i = 0; i < arrayCorrectlyGuessedLetters.length; i++) {
 				arrayCorrectlyGuessedLetters[i].className += " guessed";
+				lettersMatched += 1;
+				console.log("lettersMatched", lettersMatched);
 			}
-			// for (var i = 0; i < arrayCorrectlyGuessedLetters.length; i++) {
-			// 	arrayCorrectlyGuessedLetters[i].setAttribute = "class", "letter guessed letter" + userInput;
-			// };
 
 		} else {
 			var guessedLetter = document.createElement("span");
@@ -98,6 +110,7 @@ document.onkeyup = function(event) {
 	}
 }
 
+console.log(lettersMatched);
 
 
 
